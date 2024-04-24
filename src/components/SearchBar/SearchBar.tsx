@@ -2,15 +2,24 @@ import { CiSearch } from "react-icons/ci";
 import toast, { Toaster } from "react-hot-toast";
 
 import styles from "./SearchBar.module.css";
+import React, { FormEvent } from "react";
 
-const SearchBar = ({ searchByKeyword, resetPage }) => {
-  const handleSubmit = (evt) => {
+interface SearchBarProps {
+  searchByKeyword: (arg: string) => void;
+  resetPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  searchByKeyword,
+  resetPage,
+}) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
-    const searchQuery = evt.target.elements.searchQuery.value.trim();
+
+    const searchQuery = evt.currentTarget.searchQuery.value.trim();
     if (searchQuery === "") {
       toast.error("Please enter your request", {
         position: "top-right",
-        reverseOrder: false,
         duration: 1000,
       });
 
@@ -19,7 +28,7 @@ const SearchBar = ({ searchByKeyword, resetPage }) => {
 
     resetPage(1);
     searchByKeyword(searchQuery);
-    evt.target.elements.searchQuery.value = "";
+    evt.currentTarget.searchQuery.value = "";
   };
 
   return (

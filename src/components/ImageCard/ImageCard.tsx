@@ -1,6 +1,16 @@
+import { ImageData, openModalFunc } from "../../types";
 import styles from "./ImageCard.module.css";
+import React from "react";
 
-const ImageCard = ({ imageItem, handleOpenModal }) => {
+interface ImageCardProps {
+  imageItem: ImageData;
+  handleOpenModal: openModalFunc;
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({
+  imageItem,
+  handleOpenModal,
+}) => {
   return (
     <li className={styles.imageListItem} data-id={imageItem.id}>
       <img

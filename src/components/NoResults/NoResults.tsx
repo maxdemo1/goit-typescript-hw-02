@@ -1,6 +1,7 @@
+import React from "react";
 import styles from "./NoResults.module.css";
 
-const NoResults = () => {
+const NoResults: React.FC = () => {
   return (
     <div className={styles.noResults}>
       Unfortunately, we do not have a decent picture for your search query🙃
